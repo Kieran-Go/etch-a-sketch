@@ -1,0 +1,10 @@
+.gridContainer{
+    display: flex;
+    justify-self: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    border-style: solid;
+    width: 480px;
+    height: 480px;
+    margin-top: 50px;
+}
