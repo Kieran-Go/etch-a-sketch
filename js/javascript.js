@@ -12,9 +12,9 @@ function populateGrid(w, h, totalSquares){
     // Variable for storing all square elements of the grid
     const gridArray = [];
 
+    let styleString = "width: " + w + "px; height: " + h + "px;"
     for(let i = 0; i < totalSquares; i++){
         gridArray[i] = document.createElement("div");
-        let styleString = "width: " + w + "px; height: " + h + "px;"
         gridArray[i].setAttribute("style", styleString);
         gridContainer.appendChild(gridArray[i]);
 
@@ -38,6 +38,8 @@ clearBtn.addEventListener("click", () =>{
     if(squares > 100 || squares < 1 || isNaN(squares)){
         alert("Invalid entry. Try again.");
     }
-    setupGrid(squares);
+    else{
+        setupGrid(squares);
+    }
 });
 
