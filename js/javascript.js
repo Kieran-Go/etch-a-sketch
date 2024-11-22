@@ -10,7 +10,7 @@ function setupGrid(squares){
 
 function populateGrid(w, h, totalSquares){
     // Variable for storing all square elements of the grid
-    let gridArray = [];
+    const gridArray = [];
 
     for(let i = 0; i < totalSquares; i++){
         gridArray[i] = document.createElement("div");
@@ -24,7 +24,7 @@ function populateGrid(w, h, totalSquares){
     }
 }
 
-// By default, the grid can contain 16 squares for each axis
+// By default the grid can contain 16 squares for each axis
 const DEFAULT_SQUARES = 16;
 // Init grid
 const gridContainer = document.querySelector(".gridContainer");
@@ -35,7 +35,7 @@ setupGrid(DEFAULT_SQUARES);
 const clearBtn = document.querySelector(".clearBtn");
 clearBtn.addEventListener("click", () =>{
     let squares = prompt("How many squares for the x and y axis you would like (MAX: 100)");
-    if(squares > 100 || isNaN(squares)){
+    if(squares > 100 || squares < 1 || isNaN(squares)){
         alert("Invalid entry. Try again.");
     }
     setupGrid(squares);
