@@ -1,15 +1,18 @@
-function setupGrid(){
-    /* Use the getboundingClientRect function to get an object that
-    contains the grid width and height*/
-    const gridInfo = gridContainer.getBoundingClientRect();
-    const gridWidth = Math.floor(gridInfo.width / 16);
-    const gridHeight = Math.floor(gridInfo.height / 16);
+function setupGrid(squares){
+    // Clear the grid first
+    gridContainer.innerHTML = "";
+    
+    const squareWidth = gridContainer.clientWidth / squares;
+    const squareHeight = gridContainer.clientHeight / squares;
 
-    populateGrid(gridWidth, gridHeight);
+    populateGrid(squareWidth, squareHeight, (squares*squares));
 }
 
-function populateGrid(w, h){
-    for(let i = 0; i < 256; i++){
+function populateGrid(w, h, totalSquares){
+    // Variable for storing all square elements of the grid
+    let gridArray = [];
+
+    for(let i = 0; i < totalSquares; i++){
         gridArray[i] = document.createElement("div");
         let styleString = "width: " + w + "px; height: " + h + "px;"
         gridArray[i].setAttribute("style", styleString);
@@ -21,11 +24,20 @@ function populateGrid(w, h){
     }
 }
 
+// By default, the grid can contain 16 squares for each axis
+const DEFAULT_SQUARES = 16;
 // Init grid
 const gridContainer = document.querySelector(".gridContainer");
 
-// Variable for storing all 256 elements of the 16x16 grid
-let gridArray = [];
+setupGrid(DEFAULT_SQUARES);
 
-setupGrid();
+// Init button
+const clearBtn = document.querySelector(".clearBtn");
+clearBtn.addEventListener("click", () =>{
+    let squares = prompt("How many squares for the x and y axis you would like (MAX: 100)");
+    if(squares > 100 || isNaN(squares)){
+        alert("Invalid entry. Try again.");
+    }
+    setupGrid(squares);
+});
 
